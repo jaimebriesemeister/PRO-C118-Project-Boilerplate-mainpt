@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
-    console.log('Document is Ready')
+    console.log('O Documento está Pronto')
 
-    //  getting the date using Date() object and converting it to a string
+    //  obtendo a data usando o objeto Date () e convertendo-a em uma string
     let date = new Date()
     let current_date = date.toDateString()
 
-    //  display the date on the HTML page using JQUERY and JS
-    $('').text('Date : ' + current_date)
+    //  exibir a data na página HTML usando JQUERY e JS
+    $('').text('Data: ' + current_date)
 
     
     let review = ""
@@ -16,34 +16,34 @@ $(document).ready(function(){
     let emotion = ""
     let emoji_url = ""
 
-    //  making a function for AJAX request
+    //  criando uma função para a requisição AJAX
     function ajax_request(api_url , input_data){
 
         $.ajax({
 
-            // type of request
+            // tipo da requisição
             type : '',
 
             // url
             url : api_url,
 
-            //  JSON data
+            //  dados JSON
             data : JSON.stringify(input_data),
 
-            //  datatype of expected response
+            //  tipo de dado da resposta esperada
             dataType : 'json',
 
-            //  content type
+            //  tipo de conteúdo
             contentType : 'application/json',
 
-            //  success method
+            //  método success
             success : function(result)
             {
-                //  extract the sentiment and emoji path
+                //  extraia o sentimento e o caminho do emoji
                 emotion = result.sentiment
                 emoji_url = result.path
 
-                //  update the emoticon and sentiment accordingly
+                //  atualize o emoticon e o sentimento apropriadamente
                 if (product  ==  'Smartphone'){
                     $('#m_emoji').attr('src' , emoji_url)
                     $('#m_emotion').text(emotion)
@@ -73,7 +73,7 @@ $(document).ready(function(){
                 }
             },
 
-            //  error method
+            //  método error
             error : function(result)
             {
                 console.log(result)
@@ -81,12 +81,12 @@ $(document).ready(function(){
 
         })
 
-        console.log('ajax request sent')
+        console.log('requisição ajax enviada')
         
     }
 
 
-    //  check if Submit button under 'smartphone' is clicked and get the review accordingly
+    //  verifique se o botão Enviar em 'smartphone' foi clicado e obtenha a avaliação apropriada
     $('#m_button').click(function(){
 
         review = $('#m_textbox').val()
@@ -96,7 +96,7 @@ $(document).ready(function(){
         product = 'Smartphone'
     })
 
-    //  check if Submit button under 'camera' is clicked and get the review accordingly
+    //  verifique se o botão Enviar em 'camera' foi clicado e obtenha a avaliação apropriada
     $('').click(function(){
 
         review = $('').val()
@@ -106,7 +106,7 @@ $(document).ready(function(){
         product = 'Digital Camera'
     })
 
-    //  check if Submit button under 'headphones' is clicked and get the review accordingly
+    //  verifique se o botão Enviar em 'headphones' foi clicado e obtenha a avaliação apropriada
     $('').click(function(){
 
         review = $('').val()
@@ -116,7 +116,7 @@ $(document).ready(function(){
         product = 'Headphones'
     })
 
-    //  check if Submit button under 'videogame' is clicked and get the review accordingly
+    //  verifique se o botão Enviar em 'videogame' foi clicado e obtenha a avaliação apropriada
     $('').click(function(){
 
         review = $('').val()
@@ -127,16 +127,16 @@ $(document).ready(function(){
     })
 
 
-    //  if SAVE button is clicked, hit a post request on the API
+    //  se o botão SALVAR for clicado, dispare uma requisição POST na API
 
     $('').click(function(){
 
-        console.log('save button is clicked')
+        console.log('botão salvar foi clicado')
 
-        //  input data 
-        input_data = {'date' : date , 'product' : product , 'review' : review , 'sentiment' : emotion}
+        //  entrada de dados 
+        input_data = {'data' : date , 'produto' : product , 'avaliação' : review , 'sentimento' : emotion}
 
-        //  ajax call
+        //  chamada ajax
         $.ajax({
             type : '',
             url : '',
@@ -151,7 +151,7 @@ $(document).ready(function(){
             }
         })
 
-        // clearing textboxes
+        // limpando as caixas de texto
         $('#m_textbox').val('')
         $('#c_textbox').val('')
         $('#h_textbox').val('')
